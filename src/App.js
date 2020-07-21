@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import './css/App.css';
+import ListContacts from './components/ListContacts';
+import SearchContacts from './components/SearchContacts';
+import AddContacts from './components/AddContacts';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    constructor(){
+      super();
+      this.state = {
+          contacts: []
+      }
+      // this.deleteContacts = this.deleteContacts.bind(this);
+  }
+  deleteContacts(contact){
+    let tempContacts = this.state.contacts;
+    // tempContacts = without(tempContacts, contact);
+
+    this.setState({
+      contacts: tempContacts
+    });
+  }
+    componentDidMount(){
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(res => res.json())
+            .then(result => {
+                const data = result;
+                this.setState({
+                    contacts: data
+                });
+            })
+    }
+  render(){
+    return (
+      <div className="container">
+        <AddContacts />
+        <SearchContacts />
+        <ListContacts contacts={this.state.contacts}
+        deleteContacts={this.sdeleteContacts} />
+      </div>
+    );
+  }
 }
 
 export default App;

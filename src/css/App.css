@@ -1,0 +1,7 @@
+.btn{
+  float: right;
+  background-color:#dc3545;
+}
+.btn:hover{
+  background-color:rgba(220,53,69, 0.8);
+}
