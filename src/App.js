@@ -3,18 +3,25 @@ import './css/App.css';
 import ListContacts from './components/ListContacts';
 import SearchContacts from './components/SearchContacts';
 import AddContacts from './components/AddContacts';
-
+import {without, findIndex} from 'lodash';
 class App extends Component {
     constructor(){
       super();
       this.state = {
-          contacts: []
+          contacts: [],
+          formDisplay: true
       }
-      // this.deleteContacts = this.deleteContacts.bind(this);
+      this.deleteContacts = this.deleteContacts.bind(this);
+      this.toggleForm = this.toggleForm.bind(this);
+  }
+  toggleForm(){
+    this.setState({
+      formDisplay: !this.state.formDisplay
+    });
   }
   deleteContacts(contact){
     let tempContacts = this.state.contacts;
-    // tempContacts = without(tempContacts, contact);
+    tempContacts = without(tempContacts, contact);
 
     this.setState({
       contacts: tempContacts
@@ -33,10 +40,11 @@ class App extends Component {
   render(){
     return (
       <div className="container">
-        <AddContacts />
+        <AddContacts formDisplay={this.state.formDisplay}
+        toggleForm= {this.toggleForm}/>
         <SearchContacts />
         <ListContacts contacts={this.state.contacts}
-        deleteContacts={this.sdeleteContacts} />
+        deleteContacts={this.deleteContacts} />
       </div>
     );
   }

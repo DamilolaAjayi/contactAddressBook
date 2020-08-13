@@ -5,3 +5,12 @@
 .btn:hover{
   background-color:rgba(220,53,69, 0.8);
 }
+
+.add-contact .card-body {
+  display: none;
+}
+
+.cnt-addheading {
+  cursor: pointer;
+  user-select: none;
+}

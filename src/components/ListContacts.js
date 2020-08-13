@@ -10,9 +10,10 @@ class ListContacts extends Component{
                     <div className="col s12 m6">
                         <div className="card blue-grey darken-1">
                             <div className="card-content white-text">
-                                <div class="card-title">{contact.name}
+                                <div className="card-title">{contact.name}
                                     <span>
-                                    <a class="waves-effect waves-light btn">
+                                    <a className="waves-effect waves-light btn"
+                                    onClick={()=> this.props.deleteContacts(contact)}>
                                         <FaTimes />
                                         </a>
                                     </span>                            
